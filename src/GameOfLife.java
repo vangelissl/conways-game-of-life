@@ -2,16 +2,16 @@ import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class Life {
+public class GameOfLife {
 	private int[][] _grid;
 	private Dimension _size;
 	private int _generation;
 
-	public Life(Dimension gridSize) {
+	public GameOfLife(Dimension gridSize) {
 		_grid = new int[gridSize.height][gridSize.width];
 		_size = gridSize;
 	}
-
+	
 	public void setCell(int row, int col) {
 		_grid[row][col] = 1;
 	}
@@ -45,18 +45,6 @@ public class Life {
 		return getGridCopy();
 	}
 
-	private int[][] getGridCopy() {
-		int[][] copy = new int[_size.height][_size.width];
-
-		for (int i = 0; i < _size.height; i++) {
-			for (int j = 0; j < _size.width; j++) {
-				copy[i][j] = _grid[i][j];
-			}
-		}
-		
-		return copy;
-	}
-
 	public int getCellCount() {
 		IntStream flatStream = Arrays.stream(_grid).flatMapToInt(Arrays::stream);
 		return flatStream.sum();
@@ -88,11 +76,23 @@ public class Life {
 	}
 
 	private boolean isSafe(int row, int col) {
-		if(row < 0 || row > _size.height)
+		if (row < 0 || row > _size.height)
 			return false;
-		else if(col < 0 || col > _size.width)
+		else if (col < 0 || col > _size.width)
 			return false;
 
 		return true;
+	}
+	
+	private int[][] getGridCopy() {
+		int[][] copy = new int[_size.height][_size.width];
+
+		for (int i = 0; i < _size.height; i++) {
+			for (int j = 0; j < _size.width; j++) {
+				copy[i][j] = _grid[i][j];
+			}
+		}
+
+		return copy;
 	}
 }
