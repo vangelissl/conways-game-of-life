@@ -1,10 +1,11 @@
 import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Life {
 	private int[][] _grid;
 	private Dimension _size;
 	private int _generation;
-	private int _cellCount;
 
 	public Life(Dimension gridSize) {
 		_grid = new int[gridSize.height][gridSize.width];
@@ -31,8 +32,9 @@ public class Life {
 		return nextGenGrid;
 	}
 
-	public void updateGrid(){
+	public void update() {
 		_grid = nextGen();
+		_generation++;
 	}
 
 	public int getGeneration() {
@@ -40,7 +42,8 @@ public class Life {
 	}
 
 	public int getCellCount() {
-		return _cellCount;
+		IntStream flatStream = Arrays.stream(_grid).flatMapToInt(Arrays::stream);
+		return flatStream.sum();
 	}
 
 	private void updateCell(int[][] grid, int row, int col) {
