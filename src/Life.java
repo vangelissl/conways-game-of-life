@@ -41,6 +41,22 @@ public class Life {
 		return _generation;
 	}
 
+	public int[][] getGrid() {
+		return getGridCopy();
+	}
+
+	private int[][] getGridCopy() {
+		int[][] copy = new int[_size.height][_size.width];
+
+		for (int i = 0; i < _size.height; i++) {
+			for (int j = 0; j < _size.width; j++) {
+				copy[i][j] = _grid[i][j];
+			}
+		}
+		
+		return copy;
+	}
+
 	public int getCellCount() {
 		IntStream flatStream = Arrays.stream(_grid).flatMapToInt(Arrays::stream);
 		return flatStream.sum();
