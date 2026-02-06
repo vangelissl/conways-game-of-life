@@ -1,3 +1,4 @@
+package Game;
 import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -13,6 +14,7 @@ public class GameGrid {
 
 	public GameGrid(GameGrid grid) {
 		Dimension size = grid.getSize();
+		_grid = new int[size.height][size.width];
 
 		// copy the grid
 		for (int i = 0; i < size.height; i++) {
@@ -25,6 +27,9 @@ public class GameGrid {
 	public void setCell(int row, int col, int val) {
 		_grid[row][col] = val;
 	}
+
+	public void setRandomState()
+	{}
 
 	public int[][] getGrid() {
 		return _grid;
