@@ -1,42 +1,37 @@
 package GUI;
 
+import Game.GameOfLife;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Cell extends Rectangle {
-	private boolean _alive;
+	private final int row;
+	private final int col;
+	private final GameOfLife game;
 
-	public Cell(int sideLength) {
-		setWidth(sideLength);
-		setHeight(sideLength);
+	public Cell(int size, int row, int col, GameOfLife game) {
+		this.row = row;
+		this.col = col;
+		this.game = game;
 
-		setFill(Color.BLACK);
-
+		setWidth(size);
+		setHeight(size);
 		setStroke(Color.GRAY);
-		setStrokeWidth(1);
 
-		_alive = false;
-
-		setOnMouseClicked(e -> {
-			toggle();
-		});
+		setOnMouseClicked(e -> toggle());
 	}
 
-	public boolean isAlive() {
-		return _alive;
+	private void toggle() {
+		int value = game.getGridView()[row][col];
+		if (value == 1) {
+			game.removeCell(row, col);
+		}
+		{
+			game.addCell(row, col);
+		}
 	}
 
-	public void setAlive(boolean alive) {
-		_alive = alive;
-		updateView();
-	}
-	
-	public void toggle() {
-		_alive = !_alive;
-		updateView();
-	}
-
-	private void updateView() {
-		setFill(_alive ? Color.BLACK : Color.WHITE);
+	public void render(int value) {
+		setFill(value == 1 ? Color.BLACK : Color.WHITE);
 	}
 }
