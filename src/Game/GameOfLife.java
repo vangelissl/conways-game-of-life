@@ -38,12 +38,6 @@ public class GameOfLife {
 
 		return nextGenGrid;
 	}
-	
-	// remove in prod
-	public void setGrid(int[][] grid) {
-		int[][] originalGrid = _grid.getGrid();
-		originalGrid = grid;
-	}
 
 	public void update() {
 		_grid = nextGen();

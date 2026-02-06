@@ -23,12 +23,16 @@ public class Cell extends Rectangle {
 
 	private void toggle() {
 		int value = game.getGridView()[row][col];
+
 		if (value == 1) {
 			game.removeCell(row, col);
-		}
-		{
+		} else {
 			game.addCell(row, col);
 		}
+
+		// Force immediate update
+		int newValue = game.getGridView()[row][col];
+		render(newValue);
 	}
 
 	public void render(int value) {
