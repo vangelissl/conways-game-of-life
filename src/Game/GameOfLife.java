@@ -1,3 +1,4 @@
+package Game;
 import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -57,6 +58,10 @@ public class GameOfLife {
 		return _grid.getCopy();
 	}
 
+	public Dimension getGridSize() {
+		return _gridSize;
+	}
+
 	public int getCellCount() {
 		IntStream flatStream = Arrays.stream(_grid.getGrid()).flatMapToInt(Arrays::stream);
 		return flatStream.sum();
@@ -80,7 +85,7 @@ public class GameOfLife {
 		for (int i = row - 1; i <= row + 1; i++) {
 			for (int j = col - 1; j <= col + 1; j++) {
 				if (isSafe(i, j) && !(i == row && j == col)) {
-					neighborsCount += _grid.getCell(row, col);
+					neighborsCount += _grid.getCell(i, j);
 				}
 			}
 		}
