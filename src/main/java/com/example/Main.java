@@ -1,16 +1,18 @@
+package com.example;
+
+import java.awt.Dimension;
+
+import GUI.Grid;
+import Game.GameOfLife;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.util.Duration;
-import java.awt.Dimension;
-
-import GUI.Grid;
-import Game.GameOfLife;
 
 public class Main extends Application {
 

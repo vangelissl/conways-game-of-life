@@ -1,4 +1,5 @@
 package Game;
+
 import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.stream.IntStream;
